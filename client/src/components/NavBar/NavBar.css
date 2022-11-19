@@ -1,0 +1,58 @@
+#navbar {
+  position: sticky;
+  top: 0rem;
+  display: flex;
+  z-index: 100;
+  background-color: rgb(28, 35, 54);
+  width:100%;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: -1rem;
+  padding-top: -10rem;
+}
+
+#titulo {
+  margin-left: -3rem;
+}
+
+#searchbar {
+  margin-left: -6.5rem;
+}
+
+#lojueguito {
+  margin-bottom: -1.2rem;
+  text-shadow: 0rem 0rem 1rem rgb(255, 0, 0) ;
+  color: aliceblue;
+  font-size: 3rem;
+}
+
+#about, #fede {
+  display: flex;
+  justify-content: end;
+  color: aliceblue;
+}
+
+#about {
+  margin-left: 0.3rem;
+}
+
+#about:hover, #lojueguito:hover {
+  color: rgb(16, 19, 73); 
+  -webkit-text-stroke: 1px rgba(190, 0, 0, 0.76);
+}
+
+#create {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: large;
+    cursor: pointer;
+    background-color: rgb(16, 19, 73);
+    border: 1px solid aliceblue;
+    color: aliceblue;
+    padding: 0.7rem;
+}
+
+#create:hover {
+  background-color: aliceblue;
+  color: rgb(16, 19, 73);
+  border: 1px solid rgb(16, 19, 73);
+}

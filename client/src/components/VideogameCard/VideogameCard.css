@@ -1,0 +1,14 @@
+#card {
+  background-color: rgba(0, 0, 0, 70%);
+  backdrop-filter: blur(5px);
+  color: rgb(209, 209, 209);
+  padding: 5pt;
+  margin-left: 20pt;
+  margin-top: 20pt;
+  width: 400px;
+  border: 1pt solid rgba(255, 245, 200, 0.74);
+}
+
+img {
+  object-fit: cover;
+}

@@ -1,0 +1,15 @@
+#detail {
+  background-color: rgba(0, 0, 0, 70%);
+  backdrop-filter: blur(5px);
+	color: rgb(209, 209, 209);
+	padding: 10pt;
+	margin-left: auto;
+	margin-right: auto;
+  margin-top: 20pt;
+	width: 400px;
+  border-radius: 25pt;
+}
+
+img {
+  object-fit: cover;
+}
