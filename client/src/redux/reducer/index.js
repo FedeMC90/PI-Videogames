@@ -8,7 +8,10 @@ import {
   CLEAR_VIDEOGAME_DETAIL,
   LOADING,
   FILTER_VIDEOGAMES_BY_ORIGIN,
-  FILTER_VIDEOGAMES_BY_GENRE
+  FILTER_VIDEOGAMES_BY_GENRE,
+  ORDER,
+  GET_PLATFORMS,
+  CLEAR_HOME
 } from '../actions';
 
 const initialState = {
@@ -16,6 +19,7 @@ const initialState = {
   allVideogames: [],
   videogameDetail: {},
   genres: [],
+  platforms: [],
   loading: false,
 };
 
@@ -39,45 +43,80 @@ export default function reducer (state = initialState, action) {
         ...state,
         genres: action.payload,
       };
+    case GET_PLATFORMS:
+      return {
+        ...state,
+        platforms: action.payload,
+      };  
     case CLEAR_VIDEOGAME_DETAIL:
       return {
         ...state,
         videogameDetail: {},
       };
+      case CLEAR_HOME:
+        return {
+          ...state,
+          videogames: [],
+        };    
     case GET_VIDEOGAME_DETAIL:
       return {
         ...state,
+        loading: false,
         videogameDetail: action.payload,
       };
     case FILTER_VIDEOGAMES_BY_ORIGIN:
       const videogamesOrigin = state.allVideogames;
-      const statusFilteredOrigin = action.payload === 'todos' ? videogamesOrigin : 
+      const filteredByOrigin = action.payload === 'todos' ? videogamesOrigin : 
         action.payload === 'api' ? videogamesOrigin.filter(e => !isNaN(e.id)) :
         videogamesOrigin.filter(e => isNaN(e.id))
       return {
         ...state,
-        videogames: statusFilteredOrigin
+        videogames: filteredByOrigin
       };
     case FILTER_VIDEOGAMES_BY_GENRE:
       const videogamesGenre = state.allVideogames;
-      const statusFilteredGenre = action.payload === 'todos' ? videogamesGenre : 
+      const filteredByGenre = action.payload === 'todos' ? videogamesGenre : 
         videogamesGenre.filter(e => e.genres.some(e => e.name === action.payload));
       return {
         ...state,
-        videogames: statusFilteredGenre
+        videogames: filteredByGenre
       };   
     case CREATE_VIDEOGAME:
-//adaptarlo a la base de datos
       return {
         ...state,
-        //videogame: state.videogames.concat(action.payload),
-        videogame: fetch()
       };
     case LOADING:
       return {
         ...state,
         loading: true,
       };
+    case ORDER:
+      let orderVideogames = action.payload === 'atoz' ?
+        state.videogames.sort((a, b) => {
+          if (a.name > b.name) return 1;
+          if (a.name < b.name) return -1;
+          return 0;
+        }) : action.payload === 'ztoa' ?
+        state.videogames.sort((a, b) => {
+          if (a.name > b.name) return -1;
+          if (a.name < b.name) return 1;
+          return 0;
+        }) : action.payload === '0to5' ?
+        state.videogames.sort((a, b) => {
+          if (a.rating > b.rating) return 1;
+          if (a.rating < b.rating) return -1;
+          return 0;
+        }) : action.payload === '5to0' ?
+        state.videogames.sort((a, b) => {
+          if (a.rating > b.rating) return -1;
+          if (a.rating < b.rating) return 1;
+          return 0;
+        }) : state.allVideogames
+        
+      return {
+        ...state,
+        videogames: orderVideogames,
+      }
     default:
       return state;
   }

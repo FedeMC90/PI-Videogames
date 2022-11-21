@@ -57,16 +57,17 @@ router.get('/videogames', async(req, res) => {
   
     // Si hay un filtro por nombre los filtra
     if (name) {
-      gamesTot = gamesTot.filter(e => e.name.toLowerCase().includes(name.toLowerCase())).slice(0, 15);   
+      gamesTot = gamesTot.filter(e => e.name.toLowerCase().includes(name.toLowerCase()));   
     }
   
     // Si no encontró nada
-    if (!gamesTot.length)
-        return res.status(404).send('No se encontraron juegos con ese nombre.')
+    if (!gamesTot.length) {
+      return res.status(200).send('No sé encontraron juegos con ese nombre.')
+    }
   
     res.send(gamesTot)
   } catch (error) {
-    return res.status(404).send('Error.');
+    res.status(404).send('Error.');
   }
 });
 
@@ -105,10 +106,10 @@ router.get('/videogame/:id', async(req, res) => {
           name: response.data.name, 
           background_image: response.data.background_image,
           rating: response.data.rating,
-          genres: response.data.genres,
-          description: response.data.description,
+          genres: response.data.genres.map(e => {return {name: e.name}}),
+          description: response.data.description_raw,
           released: response.data.released,
-          platforms: response.data.platforms
+          platforms: response.data.platforms.map(e => {return {name: e.platform.name}}),
         }))
       .catch(e => res.status(404).send('El ID ingresado no existe.'));
     }
@@ -158,6 +159,7 @@ router.get('/platforms', async(req, res) => {
 });
 
 router.post('/videogames', async(req, res) => {
+  console.log('entra 1')
   const {
     name, 
     description,
@@ -167,11 +169,12 @@ router.post('/videogames', async(req, res) => {
     genres,
     platforms
   } = req.body;
-
+  console.log('entra 2')
   try {
     if (!name || !description)
       return res.status(400).send('Faltan datos obligatorios.');
-
+      console.log('entra 3')
+      console.log(name, description, released, rating, background_image)
     const newgame = await Videogame.create({
       name,
       description,
@@ -179,21 +182,21 @@ router.post('/videogames', async(req, res) => {
       rating,
       background_image
     });
-
+    console.log('entra 4')
     // Busco los géneros que coincidan con los que me trae por body
     let genresDb = await Genres.findAll({
-      where: {name: genres}
+      where: {name: genres.map(e => e.name)}
     })
-
+    console.log('entra 5')
     // Busco las plataformas que coincidan con los que me trae por body
     let platformsDb = await Platform.findAll({
-      where: {name: platforms}
+      where: {name: platforms.map(e => e.name)}
     })
-
+    console.log('entra 6')
     // Creo las relaciones
     newgame.addGenres(genresDb);
     newgame.addPlatforms(platformsDb);
-
+    console.log('entra 7')
     res.status(200).send("El juego ha sido creado exitosamente!");
   } catch (error) {
     res.status(400).send(error);

@@ -13,3 +13,13 @@
 img {
   object-fit: cover;
 }
+
+ul {
+  display: flex;
+  list-style: none;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: space-around;
+  font-size: small;
+  padding-inline-start: 0em;
+}

@@ -1,0 +1,35 @@
+#aboutpage {
+  margin-top: 10rem;
+}
+
+#hola {
+  margin-top: -8rem;
+  color: aliceblue;
+  font-size: 2rem;
+}
+
+#fotito {
+  margin-top: 0rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2rem;
+  border-radius: 10%;
+  box-shadow: 0rem 0rem 4rem rgb(255, 255, 255) ;
+}
+
+#linkedin {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  border: 1px solid aliceblue;
+  background-color: rgb(16, 19, 73);
+  color: aliceblue;
+  font-size: medium;
+  padding: 0.5rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+#linkedin:hover {
+  background-color: aliceblue;
+  color: rgb(16, 19, 73);
+  border: 1px solid rgb(16, 19, 73);
+}

@@ -1,0 +1,72 @@
+#createform {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  flex-direction: column;
+  margin-top: 5rem;
+  width: 40rem;
+  padding: 1rem 2rem;
+  border-radius: 25pt;
+  background-color: rgba(0, 0, 0, 70%);
+  backdrop-filter: blur(5px);
+	color: rgb(209, 209, 209);
+}
+
+.input {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 5rem;
+}
+
+label {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+input, select {
+  width: 14.9rem; 
+}
+
+#submit {
+  margin-top: 1rem;
+  margin-bottom: -0.5rem;
+  height: 2rem;
+  background-color: rgb(0, 138, 0);
+  cursor: pointer;
+  border-radius: 5pt;  
+}
+
+#datosobligatorios {
+  margin-bottom: -0.5rem;
+}
+
+#creacion {
+  color: aliceblue;
+  margin-bottom: -4.8rem;
+  margin-top: 1.5rem;
+}
+
+.delplat {
+  display: flex;
+}
+
+.buttondel {
+  display: flex;
+  align-items: center;
+  border-radius: 100%;
+  padding-bottom: 5px;
+  margin-left: 0.2rem;
+  padding-right: 0.8rem;
+  height: 1rem;
+  width: 1rem;
+  border: 1px solid aliceblue;
+  background-color: rgba(240, 248, 255, 0.158);
+  color: aliceblue;
+  cursor: pointer;
+}
+
+.buttondel:hover {
+  background-color: aliceblue;
+  color: black;
+}

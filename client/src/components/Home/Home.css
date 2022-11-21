@@ -11,6 +11,23 @@
   color: aliceblue;
 }
 
+#limpiar {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  border: 1px solid aliceblue;
+  background-color: rgb(16, 19, 73);
+  color: aliceblue;
+  font-size: medium;
+  padding: 0.5rem;
+  margin-right: 2rem;
+  cursor: pointer;
+}
+
+#limpiar:hover {
+  background-color: aliceblue;
+  color: rgb(16, 19, 73);
+  border: 1px solid rgb(16, 19, 73);
+}
+
 #home {
   display: flex;
   flex-wrap: wrap;

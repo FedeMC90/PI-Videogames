@@ -1,7 +1,7 @@
 import react from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { getVideogamesByName } from '../../redux/actions';
+import { getVideogamesByName, clearHome } from '../../redux/actions';
 import './SearchBar.css';
 
 export default function SearchBar({onSearch}) {
@@ -17,6 +17,7 @@ export default function SearchBar({onSearch}) {
     
     <form onSubmit={(e) => {  //en react por default se devuelve falso, por lo tanto hay que evitar eso con el metodo 
       e.preventDefault();     //preventDefault.
+      dispatch(clearHome());
       dispatch(getVideogamesByName(name));         //manda a buscar el juego ingresado por el usuario
       setName('');            //blanquea el input
       }}>

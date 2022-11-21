@@ -8,7 +8,7 @@ function NavBar({onSearch}) {
     <div id='navbar'>
 
       <div id='titulo'>
-        <Link to='/home' style = {{textDecoration: 'none'}}><h1 id='lojueguito'>LO JUEGUITO</h1></Link>
+        <Link to='/home' style = {{textDecoration: 'none'}} ><h1 id='lojueguito'>LO JUEGUITO</h1></Link>
         <p id='fede'>by <Link
             to='/about' 
             style={{textDecoration:'none'}} 

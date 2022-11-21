@@ -12,3 +12,10 @@
 img {
   object-fit: cover;
 }
+
+#genresul {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  padding-right: 2rem;
+}

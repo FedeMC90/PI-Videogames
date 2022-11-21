@@ -12,6 +12,7 @@ const VideogameDetail = () => {
   React.useEffect(() => {
     dispatch(getVideogameDetail(params.id))
     dispatch(clearVideogameDetail())
+    
   }, [])
 
   return (
@@ -23,8 +24,12 @@ const VideogameDetail = () => {
       <h5>Rating: {detail.rating}</h5>
       <h5>Released: {detail.released}</h5>
       <p id="description">{detail.description}</p>
-      {/* <h5>{detail.genres}</h5> */}
-      {/* <h5>{detail.platforms}</h5> */}
+      <ul>
+        {detail.genres && detail.genres.map(e => <li>{e.name}</li>)}
+      </ul>
+      <ul>
+        {detail.platforms && detail.platforms.map(e => <li>{e.name}</li>)}
+      </ul>
     </div>
   );
 };

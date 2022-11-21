@@ -1,13 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import './Landing.css';
 
 function Landing() {
   return (
-    <>
-      <h3>Bienvenide a</h3>
-      <h1>LO JUEGUITO</h1>
-      <Link to='/home'><button>Ingresar...</button></Link>
-    </>
+    <div id='landing'>
+      <h1 id='lojueguitolanding'>LO JUEGUITO</h1>
+      <Link to='/home'><button id='ingresar'>Ingresar...</button></Link>
+    </div>
   )
 }
 
