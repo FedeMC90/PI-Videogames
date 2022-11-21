@@ -56,13 +56,15 @@ router.get('/videogames', async(req, res) => {
     var gamesTot = gamesAPI.concat(gamesDB);  
   
     // Si hay un filtro por nombre los filtra
+    console.log('name: ', name)
     if (name) {
       gamesTot = gamesTot.filter(e => e.name.toLowerCase().includes(name.toLowerCase()));   
+      console.log('gamesTod: ', gamesTot)
     }
   
     // Si no encontró nada
     if (!gamesTot.length) {
-      return res.status(200).send('No sé encontraron juegos con ese nombre.')
+      return res.status(200).send('No se encontraron juegos con ese nombre.')
     }
   
     res.send(gamesTot)
@@ -159,7 +161,7 @@ router.get('/platforms', async(req, res) => {
 });
 
 router.post('/videogames', async(req, res) => {
-  console.log('entra 1')
+  
   const {
     name, 
     description,
@@ -169,12 +171,12 @@ router.post('/videogames', async(req, res) => {
     genres,
     platforms
   } = req.body;
-  console.log('entra 2')
+  
   try {
     if (!name || !description)
       return res.status(400).send('Faltan datos obligatorios.');
-      console.log('entra 3')
-      console.log(name, description, released, rating, background_image)
+  
+  
     const newgame = await Videogame.create({
       name,
       description,
@@ -182,21 +184,21 @@ router.post('/videogames', async(req, res) => {
       rating,
       background_image
     });
-    console.log('entra 4')
+  
     // Busco los géneros que coincidan con los que me trae por body
     let genresDb = await Genres.findAll({
       where: {name: genres.map(e => e.name)}
     })
-    console.log('entra 5')
+  
     // Busco las plataformas que coincidan con los que me trae por body
     let platformsDb = await Platform.findAll({
       where: {name: platforms.map(e => e.name)}
     })
-    console.log('entra 6')
+  
     // Creo las relaciones
     newgame.addGenres(genresDb);
     newgame.addPlatforms(platformsDb);
-    console.log('entra 7')
+  
     res.status(200).send("El juego ha sido creado exitosamente!");
   } catch (error) {
     res.status(400).send(error);
