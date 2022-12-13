@@ -21,9 +21,20 @@
 
 #lojueguito {
   margin-bottom: -1.2rem;
-  text-shadow: 0rem 0rem 1rem rgb(255, 0, 0) ;
+  /* text-shadow: 0rem 0rem 1rem rgb(255, 0, 0) ;
   color: aliceblue;
-  font-size: 3rem;
+  -webkit-text-stroke: 4px rgb(255, 0, 0); */
+  color: #fff;
+  text-shadow:
+    0 0 2px #fff,
+    0 0 4px #fff,
+    0 0 12px #fff,
+    0 0 23px red,
+    0 0 25px red,
+    0 0 30px red,
+    0 0 35px red,
+    0 0 40px red;
+  font-size: 2.8rem;
 }
 
 #about, #fede {
@@ -36,9 +47,12 @@
   margin-left: 0.3rem;
 }
 
-#about:hover, #lojueguito:hover {
+#lojueguito:hover {
   color: rgb(16, 19, 73); 
-  -webkit-text-stroke: 1px rgba(190, 0, 0, 0.76);
+}
+
+#about:hover {
+  color: red;
 }
 
 #create {

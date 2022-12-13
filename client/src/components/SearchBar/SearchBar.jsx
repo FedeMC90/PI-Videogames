@@ -1,11 +1,13 @@
-import react from 'react';
+import React from 'react';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { getVideogamesByName, clearHome } from '../../redux/actions';
 import './SearchBar.css';
 
 export default function SearchBar({onSearch}) {
   const [name, setName] = useState('');
+  const videogames = useSelector((state) => state.videogames)
 
   function handleInputChange (e) {
     setName(e.target.value);
@@ -21,10 +23,9 @@ export default function SearchBar({onSearch}) {
       dispatch(getVideogamesByName(name));         //manda a buscar el juego ingresado por el usuario
       setName('');            //blanquea el input
       }}>
-
       <div> 
         <input id="input"  type="text" placeholder='Name...' onChange={handleInputChange} value={name}/> 
-        <button id='boton' type="submit">Search</button>  
+        <button  id='boton' type="submit">Search</button>
       </div>
     </form>
   </div>

@@ -19,15 +19,13 @@ const Home = () => {
   const videogames = useSelector ((state) => state.videogames);
   const genres = useSelector ((state) => state.genres);
   
-
   const [order, setOrder] = useState('');
   // Creo un estado local que me guarde mi página actual
   const [currentPage, setCurrentPage] = useState(1); 
   // En este estado guardo la cantidad de juegos que quiero por página
-  // const [videogamesPerPage, setVideogamesPerPage] = useState(15); 
   const videogamesPerPage = 15
-  const indexOfLastVideogame = currentPage * videogamesPerPage; // 15
-  const indexOfFirstVideogame = indexOfLastVideogame - videogamesPerPage; // 0
+  const indexOfLastVideogame = currentPage * videogamesPerPage; 
+  const indexOfFirstVideogame = indexOfLastVideogame - videogamesPerPage; 
   const currentVideogames = videogames.slice(indexOfFirstVideogame, indexOfLastVideogame);
   const paginado = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -39,13 +37,8 @@ const Home = () => {
   useEffect (() => {
     dispatch(getVideogames());
     dispatch(getGenres());
-  }, []);
+  }, [dispatch]);
   
-  // Así sería con clase
-  // componentDidMount() {
-  //   this.props.getVideogames();
-  // }
-
   const noHayJuegos = () => {
     alert('No se encontraron juegos con ese nombre.')
     dispatch(getVideogames());
@@ -81,35 +74,33 @@ return (
         videogames={videogames.length}
         paginado={paginado}
       />
-      {/*********** MODULARIZAR BARRA DE ORDENAMIENTO ************* */}
       <button id='limpiar' onClick={(e) => limpiar(e)}>Limpiar</button>
-      <select  defaultValue='ordenar' onChange={e => handleOrder(e)}> {/* Ordenamiento */}
+      <select className="inputorden" defaultValue='ordenar' onChange={e => handleOrder(e)}> {/* Ordenamiento */}
         <option disabled value='ordenar'>Ordenar</option>
         <option key='atoz' value='atoz'>A-Z</option>
         <option key='ztoa'value='ztoa'>Z-A</option>
         <option key='0to5'value='0to5'>0-5</option>
         <option key='5to0'value='5to0'>5-0</option>
       </select>
-      <label>Origen: {/* Filtro por origen */}
-      <select onChange={e => handleFilterOrigin(e)}> {/* Filtro por origen */}        
+      <label className="labelorden">Origen: {/* Filtro por origen */}
+      <select className="inputorden" onChange={e => handleFilterOrigin(e)}> {/* Filtro por origen */}        
         <option key='todos' value='todos'>Todos</option>
         <option key='api' value='api'>API</option>
         <option key='propios' value='propios'>Propios</option>
       </select>
       </label>
-      <label>Género: {/* Filtro por género */}
-        <select id='genres' onChange={e => handleFilterGenre(e)}>
+      <label className="labelorden">Género: {/* Filtro por género */}
+        <select className="inputorden" onChange={e => handleFilterGenre(e)}>
           <option key='todos' value='todos'>Todos</option>
           {genres.map(e => <option key={e.name} value={e.name}>{e.name}</option>)}          
         </select>
       </label>
-      {/************************************************************ */}
     </div>
-    {loading ? <img id="load" src={load} alt="Loading..."/> :
-    currentVideogames && typeof currentVideogames === 'string' ? 
-      noHayJuegos() : 
-      currentVideogames.map(m => {
-        return (
+    <div id='videogamecard'>
+    {loading ? <img id="load" src={load} alt="Loading..."/> : 
+      currentVideogames && typeof currentVideogames === 'string' ? 
+      noHayJuegos() : currentVideogames.map(m => {
+        return (          
         <VideogameCard 
           key={m.id}
           id={m.id}
@@ -117,6 +108,7 @@ return (
           genres={m.genres}
           background_image={m.background_image}/>
     )})}
+    </div>
     
   </div>
 )

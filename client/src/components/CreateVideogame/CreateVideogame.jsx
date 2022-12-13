@@ -4,7 +4,7 @@ import { createVideogame, getGenres, getPlatforms, getVideogames } from "../../r
 import { useDispatch, useSelector } from "react-redux";
 import './CreateVideogame.css';
 
-{/* Adaptar esto a la base de datos */}
+/* Adaptar esto a la base de datos */
 const CreateVideogame = () => {
   const initialState = {
     name: "",
@@ -18,7 +18,6 @@ const CreateVideogame = () => {
 
   let platforms = useSelector((state) => state.platforms);
   let genres = useSelector((state) => state.genres);
-  let allVideogames = useSelector((state) => state.allVideogames)
   let [videogame, setVideogame] = React.useState(initialState);
   
   let dispatch = useDispatch();
@@ -40,19 +39,9 @@ const CreateVideogame = () => {
         e.target.value = '';
       }
     } 
-    // else if (e.target.name === 'name') {
-    //   if (e.target.value) {
-    //     if (allVideogames.length) {
-    //       if (allVideogames.find(e => e.name.toUpperCase() === e.target.value.toUpperCase())) {
-    //         alert('Ya hay un juego creado con este nombre!')
-    //         e.target.value = '';
-    //       }
-    //     } 
-    //   }
-    // }
   };
 
-  {/* MANEJO DEL ONCHANGE */}
+  /* MANEJO DEL ONCHANGE */
   let handleOnChange = (e) => {
     e.preventDefault();
     if(e.target.name === "platforms") {
@@ -77,12 +66,11 @@ const CreateVideogame = () => {
     }
   };
 
-  {/* MANEJO DEL SUBMIT */}
+  /* MANEJO DEL SUBMIT */
   let handleOnSubmit = (e) => {
     e.preventDefault();
     dispatch(createVideogame(videogame))
     alert('El juego fue creado exitosamente!')
-    setVideogame(initialState);
   }
 
   const handleDeletePlatform = (el) => {
@@ -106,7 +94,7 @@ const CreateVideogame = () => {
         <div id="createform">
           <div className="input">
             <label>*Nombre: </label> {/* NAME */}
-            <input 
+            <input className="ventana"
               type="text" 
               name="name" 
               value={videogame.name} 
@@ -118,7 +106,7 @@ const CreateVideogame = () => {
             <label>*Descripción: </label> {/* DESCRIPTION */}
             <textarea 
               rows="7" 
-              cols="28" 
+              cols="35" 
               name="description" 
               value={videogame.description} 
               onChange={(e) => handleOnChange(e)}>
@@ -126,7 +114,7 @@ const CreateVideogame = () => {
           </div>
           <div className="input">
             <label>Fecha de lanzamiento: </label> {/* RELEASED */}
-            <input 
+            <input className="ventana"
               type="date" 
               name="released" 
               value={videogame.released} 
@@ -136,7 +124,7 @@ const CreateVideogame = () => {
           </div>
           <div className="input">
             <label>Rating: </label> {/* RATING */}
-            <input 
+            <input className="ventana"
               type="number" 
               step="0.1" 
               min='0' 
@@ -148,7 +136,7 @@ const CreateVideogame = () => {
           </div>
           <div className="input">
             <label>*Plataformas: </label> {/* PLATAFORMS */}
-            <select 
+            <select className="ventana"
               name="platforms" 
               multiple
               value={videogame.platforms} 
@@ -173,7 +161,7 @@ const CreateVideogame = () => {
           </ul>
           <div className="input">
             <label>*Géneros: </label> {/* GENRES */}
-            <select 
+            <select className="ventana"
               name="genres" 
               value={videogame.genres} 
               multiple
@@ -190,7 +178,12 @@ const CreateVideogame = () => {
           </ul>
           <div className="input">
             <label>Imágen: </label> {/* BACKGROUND_IMAGE */}
-            <input type="text" name="background_image" value={videogame.background_image} onChange={(e) => handleOnChange(e)}></input>
+            <input className="ventana"
+              type="text" 
+              name="background_image" 
+              value={videogame.background_image} 
+              onChange={(e) => handleOnChange(e)}>
+            </input>
           </div>
           <button  id="submit" disabled={
             !videogame.name || 

@@ -4,6 +4,7 @@
   margin-right: auto;
   flex-direction: column;
   margin-top: 5rem;
+  margin-bottom: 1rem;
   width: 40rem;
   padding: 1rem 2rem;
   border-radius: 25pt;
@@ -12,10 +13,17 @@
 	color: rgb(209, 209, 209);
 }
 
+.ventana {
+  width: 18.35rem;
+}
+
 .input {
   display: flex;
   justify-content: space-between;
-  margin: 0 5rem;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  margin-bottom: 1rem;
 }
 
 label {
@@ -24,9 +32,9 @@ label {
   align-items: center;
 }
 
-input, select {
+/* input, select {
   width: 14.9rem; 
-}
+} */
 
 #submit {
   margin-top: 1rem;
@@ -38,13 +46,13 @@ input, select {
 }
 
 #datosobligatorios {
-  margin-bottom: -0.5rem;
+  margin-bottom: 0rem;
 }
 
 #creacion {
   color: aliceblue;
-  margin-bottom: -4.8rem;
-  margin-top: 1.5rem;
+  margin-bottom: -4rem;
+  margin-top: 2rem;
 }
 
 .delplat {

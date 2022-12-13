@@ -3,9 +3,17 @@
 }
 
 #lojueguitolanding {
-    text-shadow: 0rem 0rem 1rem rgb(255, 0, 0) ;
-    color: aliceblue;
-    font-size: 3rem;
+    font-size: 4rem;
+    color: #fff;
+    text-shadow:
+      0 0 2px #fff,
+      0 0 4px #fff,
+      0 0 15px #fff,
+      0 0 23px red,
+      0 0 25px red,
+      0 0 30px red,
+      0 0 35px red,
+      0 0 40px red;
 }
 
 #ingresar {
@@ -15,6 +23,7 @@
   background-color: rgb(16, 19, 73);
   border: 1px solid aliceblue;
   color: aliceblue;
+  margin-top: 4rem;
   padding: 0.7rem 1.5rem;
 }
 

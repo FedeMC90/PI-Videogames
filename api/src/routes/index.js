@@ -56,10 +56,8 @@ router.get('/videogames', async(req, res) => {
     var gamesTot = gamesAPI.concat(gamesDB);  
   
     // Si hay un filtro por nombre los filtra
-    console.log('name: ', name)
     if (name) {
       gamesTot = gamesTot.filter(e => e.name.toLowerCase().includes(name.toLowerCase()));   
-      console.log('gamesTod: ', gamesTot)
     }
   
     // Si no encontró nada
@@ -202,6 +200,31 @@ router.post('/videogames', async(req, res) => {
     res.status(200).send("El juego ha sido creado exitosamente!");
   } catch (error) {
     res.status(400).send(error);
+  }
+});
+
+router.get('/videogamesxgen', async(req, res) => {
+  const {genero} = req.query;
+  
+  try {
+    let gamesAPI2 = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}`)
+    .then(response => 
+      response.data.results.map(e => 
+      ({
+        id: e.id, 
+        name: e.name, 
+        background_image: e.background_image,
+        rating: e.rating,
+        genres: e.genres.map(e => {return {name: e.name}}),
+        platforms: e.platforms.map(e => {return {name: e.platform.name}})
+      })))
+    .catch(e => res.status(404).send('Error en la consulta con la API.'));
+
+    let gamesfiltrados = gamesAPI2.filter(e => e.genres.name === 'Shooter ')
+
+    res.status(200).send(gamesfiltrados)    
+  } catch (error) {
+    res.status(404).send('No se encontraron géneros')
   }
 });
 
