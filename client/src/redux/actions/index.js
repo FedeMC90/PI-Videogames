@@ -1,6 +1,6 @@
 import axios from 'axios';
 const {
-  URL_FRONT
+  URL_BACK
 } = process.env;
 
 export const GET_VIDEOGAMES = 'GET_VIDEOGAMES';
@@ -19,7 +19,7 @@ export const LOADING = 'LOADING';
 export const getVideogames = () => {
   return async function (dispatch) {
     dispatch(loading());
-    let json = await axios.get(`${URL_FRONT}/videogames`);
+    let json = await axios.get(`${URL_BACK}/videogames`);
     return dispatch({ type: GET_VIDEOGAMES, payload: json.data })
   }
 };
@@ -28,7 +28,7 @@ export const getVideogamesByName = (name) => {
   return async function (dispatch) {
     dispatch(loading());
     try {
-      let json = await axios.get(`${URL_FRONT}/videogames?name=${name}`);
+      let json = await axios.get(`${URL_BACK}/videogames?name=${name}`);
       return dispatch({ type: GET_VIDEOGAMES_BY_NAME, payload: json.data })  
     } catch (error) {
       return new Error('No se encontró ningún juego con ese nombre.')
@@ -38,7 +38,7 @@ export const getVideogamesByName = (name) => {
 
 export const getVideogameDetail = (id) => {
    return async function (dispatch) {
-     await fetch(`${URL_FRONT}/videogame/${id}`)
+     await fetch(`${URL_BACK}/videogame/${id}`)
       .then((response) => response.json())
       .then((json) => {
           dispatch({ type: GET_VIDEOGAME_DETAIL, payload: json });
@@ -60,14 +60,14 @@ export function clearHome() {
 
 export const createVideogame = (data) => {
   return async function (dispatch) {
-    let json = await axios.post(`${URL_FRONT}/videogames`, data);
+    let json = await axios.post(`${URL_BACK}/videogames`, data);
     return json;
   }
 };
 
 export const getGenres = () => {
   return function (dispatch) {
-    fetch(`${URL_FRONT}/genres`)
+    fetch(`${URL_BACK}/genres`)
       .then((response) => response.json())
       .then((json) => {
         return dispatch({ type: GET_GENRES, payload: json });
@@ -77,7 +77,7 @@ export const getGenres = () => {
 
 export const getPlatforms = () => {
   return function (dispatch) {
-    fetch(`${URL_FRONT}/platforms`)
+    fetch(`${URL_BACK}/platforms`)
       .then((response) => response.json())
       .then((json) => {
         return dispatch({ type: GET_PLATFORMS, payload: json });
