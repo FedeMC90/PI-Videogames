@@ -1,6 +1,7 @@
 import axios from 'axios';
 const {
-  URL_BACK
+  URL_BACK,
+  URL_FRONT
 } = process.env;
 
 export const GET_VIDEOGAMES = 'GET_VIDEOGAMES';
@@ -19,7 +20,7 @@ export const LOADING = 'LOADING';
 export const getVideogames = () => {
   return async function (dispatch) {
     dispatch(loading());
-    let json = await axios.get(`/videogames`);
+    let json = await axios.get(`${URL_FRONT}/videogames`);
     return dispatch({ type: GET_VIDEOGAMES, payload: json.data })
   }
 };
