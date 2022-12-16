@@ -4,7 +4,7 @@ const {
   URL_FRONT
 } = process.env;
 
-console.log('Front: ', URL_FRONT, ' Back: ', URL_BACK)
+
 
 export const GET_VIDEOGAMES = 'GET_VIDEOGAMES';
 export const GET_VIDEOGAMES_BY_NAME = 'GET_VIDEOGAMES_BY_NAME';
@@ -20,6 +20,7 @@ export const ORDER = 'ORDER';
 export const LOADING = 'LOADING';
 
 export const getVideogames = () => {
+  console.log('Front: ', URL_FRONT, ' Back: ', URL_BACK)
   return async function (dispatch) {
     dispatch(loading());
     let json = await axios.get(`${URL_BACK}/videogames`);
