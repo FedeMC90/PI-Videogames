@@ -23,7 +23,7 @@ export const getVideogames = () => {
   console.log('Front: ', URL_FRONT, ' Back: ', URL_BACK)
   return async function (dispatch) {
     dispatch(loading());
-    let json = await axios.get(`${URL_BACK}/videogames`);
+    let json = await axios.get(`${URL_FRONT}/videogames`);
     return dispatch({ type: GET_VIDEOGAMES, payload: json.data })
   }
 };
