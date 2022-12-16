@@ -71,7 +71,7 @@ export const createVideogame = (data) => {
 
 export const getGenres = () => {
   return function (dispatch) {
-    fetch(`/genres`)
+    fetch(`${URL_FRONT}/genres`)
       .then((response) => response.json())
       .then((json) => {
         return dispatch({ type: GET_GENRES, payload: json });
