@@ -32,7 +32,7 @@ export const getVideogamesByName = (name) => {
   return async function (dispatch) {
     dispatch(loading());
     try {
-      let json = await axios.get(`/videogames?name=${name}`);
+      let json = await axios.get(`https://lojueguito-api.onrender.com/videogames?name=${name}`);
       return dispatch({ type: GET_VIDEOGAMES_BY_NAME, payload: json.data })  
     } catch (error) {
       return new Error('No se encontró ningún juego con ese nombre.')
@@ -42,7 +42,7 @@ export const getVideogamesByName = (name) => {
 
 export const getVideogameDetail = (id) => {
    return async function (dispatch) {
-     await fetch(`/videogame/${id}`)
+     await fetch(`https://lojueguito-api.onrender.com/videogame/${id}`)
       .then((response) => response.json())
       .then((json) => {
           dispatch({ type: GET_VIDEOGAME_DETAIL, payload: json });
@@ -64,14 +64,14 @@ export function clearHome() {
 
 export const createVideogame = (data) => {
   return async function (dispatch) {
-    let json = await axios.post(`/videogames`, data);
+    let json = await axios.post('https://lojueguito-api.onrender.com/videogames', data);
     return json;
   }
 };
 
 export const getGenres = () => {
   return function (dispatch) {
-    fetch(`${URL_FRONT}/genres`)
+    fetch('https://lojueguito-api.onrender.com/genres')
       .then((response) => response.json())
       .then((json) => {
         return dispatch({ type: GET_GENRES, payload: json });
@@ -81,7 +81,7 @@ export const getGenres = () => {
 
 export const getPlatforms = () => {
   return function (dispatch) {
-    fetch(`/platforms`)
+    fetch('https://lojueguito-api.onrender.com/platforms')
       .then((response) => response.json())
       .then((json) => {
         return dispatch({ type: GET_PLATFORMS, payload: json });
