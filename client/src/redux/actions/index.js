@@ -20,7 +20,6 @@ export const ORDER = 'ORDER';
 export const LOADING = 'LOADING';
 
 export const getVideogames = () => {
-  console.log('Front: ', URL_FRONT, ' Back: ', URL_BACK)
   return async function (dispatch) {
     dispatch(loading());
     let json = await axios.get('https://lojueguito-api.onrender.com/videogames');
