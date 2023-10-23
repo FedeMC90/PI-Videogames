@@ -1,6 +1,6 @@
 import axios from 'axios';
-const URL_BACK = 'http://localhost:3001';
-// const URL_BACK = 'https://lojueguito-api.onrender.com';
+// const URL_BACK = 'http://localhost:3001';
+const URL_BACK = 'https://lojueguito-api.onrender.com';
 
 export const GET_VIDEOGAMES = 'GET_VIDEOGAMES';
 export const GET_VIDEOGAMES_BY_NAME = 'GET_VIDEOGAMES_BY_NAME';
