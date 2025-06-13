@@ -9,10 +9,17 @@ const {
   DATABASE_NAME
 } = process.env;
 
- const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DATABASE_NAME}`, {
-   logging: false, // set to console.log to see the raw SQL queries
-   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
- });
+const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DATABASE_NAME}`, {
+  dialect: 'postgres',
+  dialectOptions: {
+    ssl: {
+      require: true, // Esto es CRUCIAL: le dice a Sequelize que exija SSL
+      rejectUnauthorized: false // Importante para Render: Render usa certificados SSL, pero a veces su autoridad de certificación no es reconocida por defecto. Ponerlo en 'false' permite la conexión pero deshabilita la verificación del certificado. En un entorno de producción de alta seguridad, querrías una solución más robusta para la verificación.
+    }
+  },
+  logging: false, // set to console.log to see the raw SQL queries
+  native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+});
 // const sequelize = new Sequelize(DB_DEPLOY, {
 //   logging: false, // set to console.log to see the raw SQL queries
 //   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
