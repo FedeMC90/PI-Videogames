@@ -9,7 +9,7 @@ const {
   DATABASE_NAME
 } = process.env;
 
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DATABASE_NAME}`, {
+const sequelize = new Sequelize(`${DB_DEPLOY}`, {
   dialect: 'postgres',
   dialectOptions: {
     ssl: {
